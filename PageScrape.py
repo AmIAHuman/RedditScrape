@@ -46,7 +46,7 @@ def resetRecords():
     extractedRecords = []
 
 def dumpRecords():
-    with open('dump.json', 'w') as outfile:
+    with open('dumpPageScrape.json', 'w') as outfile:
         json.dump(extractedRecords, outfile)
 
 def getRecords():
