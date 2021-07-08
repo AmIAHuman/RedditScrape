@@ -15,3 +15,9 @@ Scrapes a Reddit post along with its comments.
 `python3 PostScrape.py`
 ### Instructions
 Copy and paste the link of the Reddit post that you want to scrape.
+## crawler.py
+Crawls links on Reddit.
+### Run It
+`python3 crawler.py`
+### Instructions
+Type in the number of pages that you want to crawl.
