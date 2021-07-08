@@ -1,14 +1,16 @@
 import urllib.request
 from bs4 import BeautifulSoup
 import json
+import PostScrape
 
 extractedRecords = []
 
-def getPagesUpTo(pages):
+def crawlPagesUpTo(pages):
     if int(pages) < 1:
         print("Invalid integer.")
         return
     headers = {'user-agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.3'}
+    print('Extracting from a total of %d links.'%(int(pages) * 25))
     for page in range(int(pages)):
         curr = "https://old.reddit.com/top/"
         if page != 0:
@@ -20,12 +22,16 @@ def getPagesUpTo(pages):
         links = siteTable.find_all("a", class_="title")
         commentLinks = siteTable.find_all("a", class_="bylink comments may-blank")
         for index in range(25):
+            PostScrape.resetDetails()
             title = links[index].text
             url = links[index]['href']
             comments = commentLinks[index].text
             commenturl = commentLinks[index]['href']
             tag = commenturl.split('/')[6]
             ad = False
+            print('%d. Extracting data from %s.'%((index + 1), commenturl))
+            PostScrape.scrapeDetails(commenturl)
+            postDetails = PostScrape.getDetails()
             if not url.startswith('http'):
                 url = "https://old.reddit.com" + url
             if not commenturl.startswith('http'):
@@ -38,20 +44,22 @@ def getPagesUpTo(pages):
                 'comments':comments,
                 'commenturl':commenturl,
                 'tag':tag,
-                'ad':ad
+                'ad':ad,
+                'postDetails':postDetails
             }
             extractedRecords.append(record)
+        print('Finished extracting from a total of %d links.'%(int(pages) * 25))
 
 def resetRecords():
-    extractedRecords.clear()
+    extractedRecords.clear
 
 def dumpRecords():
-    with open('dumpPageScrape.json', 'w') as outfile:
+    with open('dumpCrawl.json', 'w') as outfile:
         json.dump(extractedRecords, outfile)
 
 def getRecords():
     return extractedRecords
 
 if __name__ == "__main__":
-    getPagesUpTo(input("How many pages would you like to scrape? "))
+    crawlPagesUpTo(input("How many pages would you like to crawl? "))
     dumpRecords()

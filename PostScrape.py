@@ -42,9 +42,15 @@ def scrapeDetails(url):
         'extractedComments':extractedComments
     })
 
+def resetDetails():
+    postDetails.clear()
+
 def dumpDetails():
     with open('dumpPostScrape.json', 'w') as outfile:
         json.dump(postDetails, outfile)
+
+def getDetails():
+    return postDetails
 
 if __name__ == "__main__":
     scrapeDetails(str(input("Which post do you want to scrape? ")))
