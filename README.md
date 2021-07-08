@@ -9,3 +9,9 @@ Scrapes the title, url, comment count, comment url, tag, and if the post is an a
 `python3 PageScrape.py`
 ### Instructions
 Type in the number of pages that you want to scrape.
+## PostScrape.py
+Scrapes a Reddit post along with its comments.
+### Run It
+`python3 PostScrape.py`
+### Instructions
+Copy and paste the link of the Reddit post that you want to scrape.
