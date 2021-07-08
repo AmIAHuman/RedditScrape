@@ -1,4 +1,4 @@
-![](/assets/reddit.png)
+![](/assets/reddit.jpg)
 # RedditScrape
 Scrape Reddit. 
 ## Prerequisites
