@@ -51,7 +51,7 @@ def crawlPagesUpTo(pages):
         print('Finished extracting from a total of %d links.'%(int(pages) * 25))
 
 def resetRecords():
-    extractedRecords.clear
+    extractedRecords.clear()
 
 def dumpRecords():
     with open('dumpCrawl.json', 'w') as outfile:
