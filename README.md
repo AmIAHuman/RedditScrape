@@ -1,5 +1,5 @@
 # RedditScrape
-Scrape the top of Reddit. 
+Scrape Reddit. 
 ## Prerequisites
 `pip3 install -r requirements.txt`
 ## PageScrape.py
